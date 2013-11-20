@@ -8,11 +8,9 @@
 
 # Build results
 
-[Dd]ebug/
-[Rr]elease/
+build/Debug/
+build/Release/
 x64/
-build/
-[Bb]in/
 [Oo]bj/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
@@ -45,6 +43,21 @@ build/
 *.pidb
 *.log
 *.scc
+
+# Exception files needed for debug
+!/lib/debug/alut.pdb
+!/lib/debug/assimp.pdb
+!/lib/debug/bulletcollision.pdb
+!/lib/debug/bulletdynamics.pdb
+!/lib/debug/bulletsoftbody.pdb
+!/lib/debug/convexdecomposition.pdb
+!/lib/debug/freeglut.pdb
+!/lib/debug/freetype.pdb
+!/lib/debug/glew32.pdb
+!/lib/debug/hacd.pdb
+!/lib/debug/linearmath.pdb
+!/lib/debug/openglsupport.pdb
+!/lib/debug/zlib.pdb
 
 # Visual C++ cache files
 ipch/
