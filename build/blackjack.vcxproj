@@ -19,10 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\inc\internal\application.h" />
     <ClInclude Include="..\inc\internal\main.h" />
+    <ClInclude Include="..\inc\internal\renderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\application.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\renderer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E23F5411-1546-48AC-938B-2347066C7BB3}</ProjectGuid>
