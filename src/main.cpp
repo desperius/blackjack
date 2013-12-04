@@ -1,5 +1,7 @@
 #include "main.h"
 #include "application.h"
+#include "unzip.h"
+#include "zip.h"
 
 int main(int argc, char **argv)
 {

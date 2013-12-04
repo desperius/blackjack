@@ -58,6 +58,7 @@ x64/
 !/lib/debug/linearmath.pdb
 !/lib/debug/openglsupport.pdb
 !/lib/debug/zlib.pdb
+!/lib/debug/zlibstat.pdb
 
 # Visual C++ cache files
 ipch/
