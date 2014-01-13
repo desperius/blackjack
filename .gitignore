@@ -7,6 +7,7 @@
 *.sln.docstates
 
 # Build results
+release/blackjack.lib
 bin/blackjack.lib
 build/Debug/
 build/Release/
@@ -39,10 +40,11 @@ x64/
 *.log
 *.vspscc
 *.vssscc
-.builds
+*.builds
 *.pidb
 *.log
 *.scc
+*.exp
 
 # Exception files needed for debug
 !/lib/debug/alut.pdb
