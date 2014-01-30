@@ -18,6 +18,9 @@
     <ClInclude Include="..\inc\internal\renderer.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="..\inc\internal\font.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -27,6 +30,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\src\renderer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\font.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

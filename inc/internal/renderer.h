@@ -7,8 +7,8 @@ const int WINDOW_HEIGHT = 600;
 class Renderer
 {
 public:
-	Renderer() { }
-	virtual ~Renderer() { }
+	Renderer(void) { }
+	~Renderer(void) { }
 
 	void Init(int argc, char **argv);
 	void Start(void);
