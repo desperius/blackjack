@@ -1,21 +1,11 @@
 #include "main.h"
-#include "font.h"
 #include "renderer.h"
 #include "application.h"
 
-App::App(void) : renderer(nullptr)
-{
-	
-}
+App::App(void) : renderer(nullptr) { }
 
 App::~App(void)
 {
-	if (font)
-	{
-		delete font;
-		font = nullptr;
-	}
-
 	if (renderer)
 	{
 		delete renderer;
@@ -25,10 +15,7 @@ App::~App(void)
 
 void App::Init(int argc, char **argv)
 {
-	font = new (std::nothrow) Font();
-	font->Init();
-
-	renderer = new (std::nothrow) Renderer();
+    renderer = new (std::nothrow) Renderer();
 	renderer->Init(argc, argv);
 }
 

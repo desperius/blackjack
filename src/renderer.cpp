@@ -1,5 +1,6 @@
 #include "main.h"
 #include "renderer.h"
+#include "font.h"
 
 extern "C"
 {
@@ -8,6 +9,17 @@ extern "C"
 }
 
 Renderer *Renderer::instance = nullptr;
+
+Renderer::Renderer(void) : font(nullptr) { }
+
+Renderer::~Renderer(void) 
+{
+    if (font)
+    {
+        delete font;
+        font = nullptr;
+    }
+}
 
 void Renderer::CallbackReshape(int w, int h)
 {
@@ -38,6 +50,10 @@ void Renderer::Init(int argc, char **argv)
 	//> Set glut functions
 	glutReshapeFunc(Renderer::CallbackReshape);
 	glutDisplayFunc(Renderer::CallbackDisplay);
+
+    font = new (std::nothrow) Font();
+    font->Init();
+    font->Load();
 }
 void Renderer::Reshape(int w, int h)
 {
@@ -52,8 +68,14 @@ void Renderer::Reshape(int w, int h)
 void Renderer::Display(void)
 {
 	//std::cout << "Display function was called!" << std::endl;
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.5, 1.0, 0.0, 1.0);
+	glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    if (font)
+    {
+        font->Draw();
+    }
+
 	glutSwapBuffers();
 }
 
