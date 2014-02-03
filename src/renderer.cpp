@@ -1,6 +1,7 @@
 #include "main.h"
 #include "renderer.h"
-#include "font.h"
+#include "text.h"
+#include "image.h"
 
 extern "C"
 {
@@ -10,14 +11,20 @@ extern "C"
 
 Renderer *Renderer::instance = nullptr;
 
-Renderer::Renderer(void) : font(nullptr) { }
+Renderer::Renderer(void) : text(nullptr), image(nullptr) { }
 
 Renderer::~Renderer(void) 
 {
-    if (font)
+    if (text)
     {
-        delete font;
-        font = nullptr;
+        delete text;
+        text = nullptr;
+    }
+
+    if (image)
+    {
+        delete image;
+        image = nullptr;
     }
 }
 
@@ -51,9 +58,13 @@ void Renderer::Init(int argc, char **argv)
 	glutReshapeFunc(Renderer::CallbackReshape);
 	glutDisplayFunc(Renderer::CallbackDisplay);
 
-    font = new (std::nothrow) Font();
-    font->Init();
-    font->Load();
+    text = new (std::nothrow) Text();
+    text->Init();
+    text->Load();
+
+    image = new (std::nothrow) Image();
+    image->Init();
+    image->Load(IMAGE_DIR "box.png");
 }
 void Renderer::Reshape(int w, int h)
 {
@@ -71,9 +82,9 @@ void Renderer::Display(void)
 	glClearColor(1.0, 1.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    if (font)
+    if (text)
     {
-        font->Draw();
+        text->Draw();
     }
 
 	glutSwapBuffers();

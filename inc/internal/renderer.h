@@ -4,7 +4,8 @@
 const int WINDOW_WIDTH  = 800;
 const int WINDOW_HEIGHT = 600;
 
-class Font;
+class Text;
+class Image;
 
 class Renderer
 {
@@ -21,11 +22,11 @@ private:
 
 	void Reshape(int w, int h);
 	void Display(void);
-    void SetFont(Font *pointer) { font = pointer; }
 
 private:
 	static Renderer *instance;
-    Font *font;
+    Text            *text;
+    Image           *image;
 };
 
 #endif /* _RENDERER_H_ */

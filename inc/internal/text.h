@@ -1,5 +1,5 @@
-#ifndef _FONT_H_
-#define _FONT_H_
+#ifndef _TEXT_H_
+#define _TEXT_H_
 
 // FreeType library types
 typedef struct FT_LibraryRec_ *FT_Library;
@@ -9,11 +9,13 @@ typedef struct FT_FaceRec_    *FT_Face;
 typedef unsigned int GLuint;
 typedef unsigned int GLenum;
 
-class Font
+#define FONT_DIR "../res/fonts/"
+
+class Text
 {
 public:
-    Font(void);
-    ~Font(void);
+    Text(void);
+    ~Text(void);
 
     void Init(void);
     void Load(void);
@@ -21,8 +23,8 @@ public:
     void RenderText(const char *text, float x, float y, float sx, float sy);
 
 protected:
-    Font(const Font &);
-    Font & operator= (const Font &);
+    Text(const Text &);
+    Text & operator= (const Text &);
 
 private:
     static GLuint MakeShader(GLenum type, const std::string &source);
@@ -36,4 +38,4 @@ private:
     GLuint program_id;
 };
 
-#endif /* _FONT_H_ */
+#endif /* _TEXT_H_ */

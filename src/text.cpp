@@ -1,5 +1,5 @@
 #include "main.h"
-#include "font.h"
+#include "text.h"
 #include "ft2.h"
 #include FT_FREETYPE_H
 #include <string>
@@ -36,11 +36,9 @@ const std::string font_fragment_shader_src =
     "gl_FragColor = vec4(color.rgb, texture2D(tex, texcoord).a) * color;\n"
     "}\n";
 
-#define FONT_DIR "../res/fonts/"
+Text::Text(void) : library(nullptr), face(nullptr) { }
 
-Font::Font(void) : library(nullptr), face(nullptr) { }
-
-Font::~Font(void)
+Text::~Text(void)
 {
     FT_Done_FreeType(library);
     library = nullptr;
@@ -49,7 +47,7 @@ Font::~Font(void)
     face = nullptr;
 }
 
-void Font::Init(void)
+void Text::Init(void)
 {
     FT_Error error = FT_Init_FreeType(&library);
 
@@ -66,7 +64,7 @@ void Font::Init(void)
     }
 }
 
-void Font::Load(void)
+void Text::Load(void)
 {
     vertex_shader   = MakeShader(GL_VERTEX_SHADER, font_vertex_shader_src);
     fragment_shader = MakeShader(GL_FRAGMENT_SHADER, font_fragment_shader_src);
@@ -87,7 +85,7 @@ void Font::Load(void)
     }
 }
 
-void Font::Draw(void)
+void Text::Draw(void)
 {
     glUseProgram(program_id);
 
@@ -134,7 +132,7 @@ void Font::Draw(void)
     glUseProgram(0);
 }
 
-void Font::RenderText(const char *text, float x, float y, float sx, float sy)
+void Text::RenderText(const char *text, float x, float y, float sx, float sy)
 {
     const char *p = nullptr;
     FT_GlyphSlot glyph = face->glyph;
@@ -165,7 +163,7 @@ void Font::RenderText(const char *text, float x, float y, float sx, float sy)
     }
 }
 
-GLuint Font::MakeShader(GLenum type, const std::string &source)
+GLuint Text::MakeShader(GLenum type, const std::string &source)
 {
     GLuint shader_id = glCreateShader(type);
     std::cout << "Shader ID: " << shader_id << std::endl;

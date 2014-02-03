@@ -20,13 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\inc\internal\application.h" />
-    <ClInclude Include="..\inc\internal\font.h" />
+    <ClInclude Include="..\inc\internal\image.h" />
+    <ClInclude Include="..\inc\internal\text.h" />
     <ClInclude Include="..\inc\internal\main.h" />
     <ClInclude Include="..\inc\internal\renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\application.cpp" />
-    <ClCompile Include="..\src\font.cpp" />
+    <ClCompile Include="..\src\image.cpp" />
+    <ClCompile Include="..\src\text.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\renderer.cpp" />
   </ItemGroup>
