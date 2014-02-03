@@ -3,7 +3,5 @@
 
 #include <iostream>
 #include <string.h>
-//#include "glew.h"
-//#include "freeglut.h"
 
 #endif /* _MAIN_H_ */
