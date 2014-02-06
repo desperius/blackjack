@@ -17,9 +17,9 @@ struct point {
 };
 
 const std::string font_vertex_shader_src =
-    "#version 120\n"
-    "attribute vec4 coord;\n"
-    "varying   vec2 texcoord;\n"
+    "#version 330 core\n"
+    "in vec4 coord;\n"
+    "out vec2 texcoord;\n"
     "void main(void)\n"
     "{\n"
     "gl_Position = vec4(coord.xy, 0, 1);\n"
@@ -27,13 +27,14 @@ const std::string font_vertex_shader_src =
     "}\n";
 
 const std::string font_fragment_shader_src =
-    "#version 120\n"
-    "varying vec2 texcoord;\n"
+    "#version 330 core\n"
+    "in vec2 texcoord;\n"
     "uniform sampler2D tex;\n"
     "uniform vec4 color;\n"
+    "out vec4 frag_color;\n"
     "void main(void)\n"
     "{\n"
-    "gl_FragColor = vec4(color.rgb, texture2D(tex, texcoord).a) * color;\n"
+    "frag_color = vec4(color.rgb, texture2D(tex, texcoord).a) * color;\n"
     "}\n";
 
 Text::Text(void) : library(nullptr), face(nullptr) { }

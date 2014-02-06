@@ -9,6 +9,8 @@ typedef int          ILint;
 typedef unsigned char GLubyte;
 typedef unsigned char GLboolean;
 typedef int           GLint;
+typedef unsigned int  GLuint;
+typedef unsigned int  GLenum;
 
 #define IMAGE_DIR "../res/textures/"
 
@@ -20,10 +22,14 @@ public:
 
     void Init(void);
     void Load(const char *path);
+    void Draw(void);
 
 protected:
     Image(const Image &);
     Image & operator= (const Image &);
+
+private:
+    static GLuint MakeShader(GLenum type, const std::string &source);
 
 private:
     ILuint    image_id;
@@ -32,6 +38,9 @@ private:
 	GLint     width;
 	GLint     height;
 	GLboolean alpha;
+    GLuint    vertex_shader;
+    GLuint    fragment_shader;
+    GLint     program_id;
 };
 
 #endif /* _IMAGE_H_ */

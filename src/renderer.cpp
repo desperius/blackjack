@@ -82,6 +82,11 @@ void Renderer::Display(void)
 	glClearColor(1.0, 1.0, 1.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    if (image)
+    {
+        image->Draw();
+    }
+
     if (text)
     {
         text->Draw();
