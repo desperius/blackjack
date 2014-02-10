@@ -54,6 +54,11 @@ void Renderer::Init(int argc, char **argv)
 		std::cout << "WTF? GLEW initialization problems!" << std::endl;
 	}
 
+    if (glewIsSupported("GL_VERSION_3_3"))
+    {
+        std::cout << "OpenGL 3.3 supported!" << std::endl;
+    }
+
 	//> Set glut functions
 	glutReshapeFunc(Renderer::CallbackReshape);
 	glutDisplayFunc(Renderer::CallbackDisplay);
@@ -65,6 +70,9 @@ void Renderer::Init(int argc, char **argv)
     image = new (std::nothrow) Image();
     image->Init();
     image->Load(IMAGE_DIR "box.png");
+
+    const GLubyte *gpu = glGetString(GL_RENDERER);
+    std::cout << gpu << std::endl;
 }
 void Renderer::Reshape(int w, int h)
 {

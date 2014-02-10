@@ -18,7 +18,7 @@ extern "C"
 #include <string>
 
 const std::string image_vertex_shader_src =
-    "#version 130\n"
+    "#version 330 core\n"
     "uniform mat4 mvp;\n"
     "in vec3 position;\n"
     "in vec2 texcoord;\n"
@@ -30,7 +30,7 @@ const std::string image_vertex_shader_src =
     "}\n";
 
 const std::string image_fragment_shader_src =
-    "#version 130\n"
+    "#version 330 core\n"
     "uniform sampler2D color_texture;\n"
     "in vec2 frag_texcoord;\n"
     "out vec4 color;\n"
