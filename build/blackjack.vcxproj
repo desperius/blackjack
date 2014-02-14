@@ -97,10 +97,10 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <TreatWarningAsError>false</TreatWarningAsError>
-      <AdditionalIncludeDirectories>..\inc\;..\inc\devil\;..\inc\assimp\;..\inc\opengl\;..\inc\internal\;..\inc\freetype\freetype\;..\inc\freetype\;..\inc\alut\;..\inc\bullet\;..\inc\glm\;..\inc\glm\core\;..\inc\glm\gtc\;..\inc\glm\gtx\;..\inc\glm\virtrev\;..\inc\minizip\;..\inc\zlib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\inc\;..\inc\devil\;..\inc\assimp\;..\inc\opengl\;..\inc\internal\;..\inc\freetype\freetype\;..\inc\freetype\;..\inc\alut\;..\inc\bullet\;..\inc\glm\;..\inc\glm\core\;..\inc\glm\gtc\;..\inc\glm\gtx\;..\inc\glm\virtrev\;..\inc\minizip\;..\inc\zlib\;..\inc\opencl\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling>Sync</ExceptionHandling>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
@@ -109,10 +109,11 @@
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;zlib.lib;freetype.lib;freeglut.lib;openal32.lib;alut.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;OpenGLSupport.lib;assimp.lib;devil.lib;ilu.lib;ilut.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;zlib.lib;freetype.lib;freeglut.lib;openal32.lib;alut.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;OpenGLSupport.lib;assimp.lib;devil.lib;ilu.lib;ilut.lib;zlibstat.lib;opencl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>NotSet</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>

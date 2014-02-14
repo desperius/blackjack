@@ -8,6 +8,8 @@
 #include "ilu.h"
 #include "ilut.h"
 
+#include "cl.hpp"
+
 #define TEXTURE_PATH "../res/textures/"
 
 uLong size_buf;
@@ -85,6 +87,62 @@ int main(int argc, char **argv)
 {
 	std::cout << argv[argc - 1] << std::endl;
 	read_zip();
+
+    std::vector<cl::Platform> platform;
+    cl::Platform::get(&platform);
+
+    if (platform.empty())
+    {
+        std::cout << "OpenCL platforms not found!" << std::endl;
+    }
+    else
+    {
+        std::cout << "OpenCL Fuck Yeah!" << std::endl;
+    }
+
+    cl::Context context;
+    std::vector<cl::Device> device;
+
+    for (auto p = platform.begin(); device.empty() && p != platform.end(); ++p) 
+    {
+	    std::vector<cl::Device> pldev;
+ 
+	    try 
+        {
+		    p->getDevices(CL_DEVICE_TYPE_GPU, &pldev);
+ 
+		    for(auto d = pldev.begin(); device.empty() && d != pldev.end(); ++d) 
+            {
+		        if (!d->getInfo<CL_DEVICE_AVAILABLE>())
+                {
+                    continue;
+                }
+ 
+		        std::string ext = d->getInfo<CL_DEVICE_EXTENSIONS>();
+ 
+		        if (ext.find("cl_khr_fp64") == std::string::npos && ext.find("cl_amd_fp64") == std::string::npos)
+                {
+                    continue;
+                }
+ 
+		        device.push_back(*d);
+		        context = cl::Context(device);
+		    }
+	    } 
+        catch(...) 
+        {
+		    device.clear();
+	    }
+	}
+
+    if (device.empty())
+    {
+        std::cout << "GPUs with double precision not found" << std::endl;
+    }
+    else
+    {
+        std::cout << "GPUs with double precision Fuck Yeah!" << std::endl;
+    }
 
 	App app;
 	app.Init(argc, argv);

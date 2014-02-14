@@ -3,5 +3,6 @@
 
 #include <iostream>
 #include <string.h>
+#include <vector>
 
 #endif /* _MAIN_H_ */
