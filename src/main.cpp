@@ -10,6 +10,11 @@
 
 #include "cl.hpp"
 
+#include <cuda.h>
+#include <cuda_runtime.h>
+
+extern void launch(void);
+
 #define TEXTURE_PATH "../res/textures/"
 
 uLong size_buf;
@@ -87,6 +92,7 @@ int main(int argc, char **argv)
 {
 	std::cout << argv[argc - 1] << std::endl;
 	read_zip();
+    launch();
 
     std::vector<cl::Platform> platform;
     cl::Platform::get(&platform);
