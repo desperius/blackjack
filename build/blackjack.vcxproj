@@ -119,7 +119,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;zlib.lib;freetype.lib;freeglut.lib;openal32.lib;alut.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;OpenGLSupport.lib;assimp.lib;devil.lib;ilu.lib;ilut.lib;zlibstat.lib;opencl.lib;cudart.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;zlib.lib;freetype.lib;freeglut.lib;openal32.lib;alut.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;OpenGLSupport.lib;assimp.lib;devil.lib;ilu.lib;ilut.lib;zlibstat.lib;opencl.lib;cuda.lib;cudart.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>NotSet</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>

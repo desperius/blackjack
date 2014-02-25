@@ -92,6 +92,21 @@ int main(int argc, char **argv)
 {
 	std::cout << argv[argc - 1] << std::endl;
 	read_zip();
+    
+    // Initialize CUDA
+    CUresult res;
+    CUcontext pctx;
+    CUdevice dev;
+    cuInit(0);
+    cuDeviceGet(&dev, 0);
+    cuCtxCreate(&pctx, CU_CTX_SCHED_AUTO, dev);
+    res = cuCtxPopCurrent(&pctx);
+    
+    if(res == CUDA_SUCCESS)
+    {
+        std::cout << "Initialized CUDA!" << std::endl;
+    }
+
     launch();
 
     std::vector<cl::Platform> platform;
