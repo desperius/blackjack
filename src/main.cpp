@@ -10,15 +10,27 @@
 
 #include "cl.hpp"
 
-#include <cuda.h>
-#include <cuda_runtime.h>
-
-extern void launch(void);
-
 #define TEXTURE_PATH "../res/textures/"
 
 uLong size_buf;
 void *buf;
+
+void read_zip(void);
+void init_ocl(void);
+
+int main(int argc, char **argv)
+{
+	std::cout << argv[argc - 1] << std::endl;
+	read_zip();
+    init_ocl();
+
+	App app;
+	app.Init(argc, argv);
+	app.Start();
+
+	system("PAUSE");
+	return 0;
+}
 
 void read_zip(void)
 {
@@ -88,27 +100,8 @@ void read_zip(void)
 	image_id = ilGenImage();
 }
 
-int main(int argc, char **argv)
+void init_ocl(void)
 {
-	std::cout << argv[argc - 1] << std::endl;
-	read_zip();
-    
-    // Initialize CUDA
-    CUresult res;
-    CUcontext pctx;
-    CUdevice dev;
-    cuInit(0);
-    cuDeviceGet(&dev, 0);
-    cuCtxCreate(&pctx, CU_CTX_SCHED_AUTO, dev);
-    res = cuCtxPopCurrent(&pctx);
-    
-    if(res == CUDA_SUCCESS)
-    {
-        std::cout << "Initialized CUDA!" << std::endl;
-    }
-
-    launch();
-
     std::vector<cl::Platform> platform;
     cl::Platform::get(&platform);
 
@@ -164,11 +157,4 @@ int main(int argc, char **argv)
     {
         std::cout << "GPUs with double precision Fuck Yeah!" << std::endl;
     }
-
-	App app;
-	app.Init(argc, argv);
-	app.Start();
-
-	system("PAUSE");
-	return 0;
 }
