@@ -164,8 +164,8 @@ void Image::Draw(void)
     {
         -s, -s, s,
          s, -s, s,
-         s,  s/2, s,
-        -s,  s/2, s
+         s,  s, s,
+        -s,  s, s
     };
 
     const GLfloat quad_texcoords[] =

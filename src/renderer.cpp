@@ -69,7 +69,7 @@ void Renderer::Init(int argc, char **argv)
 
     image = new (std::nothrow) Image();
     image->Init();
-    image->Load(IMAGE_DIR "box.png");
+    image->Load(IMAGE_DIR "background.png");
 
     const GLubyte *gpu = glGetString(GL_RENDERER);
     std::cout << gpu << std::endl;
