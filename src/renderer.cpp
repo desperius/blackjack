@@ -38,6 +38,11 @@ void Renderer::CallbackDisplay(void)
 	instance->Display();
 }
 
+void Renderer::CallbackMouse(int button, int state, int x, int y)
+{
+	instance->Mouse(button, state, x, y);
+}
+
 void Renderer::Init(int argc, char **argv)
 {
 	instance = this;
@@ -61,6 +66,7 @@ void Renderer::Init(int argc, char **argv)
 	//> Set glut functions
 	glutReshapeFunc(Renderer::CallbackReshape);
 	glutDisplayFunc(Renderer::CallbackDisplay);
+	glutMouseFunc(Renderer::CallbackMouse);
 
     text = new (std::nothrow) Text();
     text->Init();
@@ -100,6 +106,14 @@ void Renderer::Display(void)
     }
 
 	glutSwapBuffers();
+}
+
+void Renderer::Mouse(int button, int state, int x, int y)
+{
+	if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
+	{
+		std::cout << "Mouse position: (" << x << ", " << y << ")" << std::endl;
+	}
 }
 
 void Renderer::Start(void)

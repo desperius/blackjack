@@ -19,9 +19,11 @@ public:
 private:
 	static void CallbackReshape(int w, int h);
 	static void CallbackDisplay(void);
+	static void CallbackMouse(int button, int state, int x, int y);
 
 	void Reshape(int w, int h);
 	void Display(void);
+	void Mouse(int button, int state, int x, int y);
 
 private:
 	static Renderer *instance;
