@@ -158,14 +158,14 @@ void Image::Draw(void)
     glBindTexture(GL_TEXTURE_2D, image_id);
 
     GLint vertices_count = 4;
-    GLfloat s = 1.0;
+    GLfloat s = 10.0;
 
     const GLfloat quad_positions[] = 
     {
-        -s, -s, s,
-         s, -s, s,
-         s,  s, s,
-        -s,  s, s
+        -s * (4.0f / 3.0f), -s, -s * 0.8f,
+         s * (4.0f / 3.0f), -s, -s * 0.8f,
+         s * (4.0f / 3.0f),  s, -s * 0.8f,
+        -s * (4.0f / 3.0f),  s, -s * 0.8f
     };
 
     const GLfloat quad_texcoords[] =
@@ -218,7 +218,7 @@ void Image::Draw(void)
     glm::mat4 mvp;
 
     projection = glm::perspective(45.0, 4.0 / 3.0, 0.1, 100.0);
-    view = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, -5.0));
+    view = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, -10.0));
     model = glm::scale(glm::mat4(1.0), glm::vec3(1.0));
     mvp = projection * view * model;
 

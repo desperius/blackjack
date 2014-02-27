@@ -48,7 +48,6 @@ void Renderer::Init(int argc, char **argv)
 	glutCreateWindow("Black Jack");
 	glutCreateMenu(NULL);
 
-
 	if (GLEW_OK != glewInit())
 	{
 		std::cout << "WTF? GLEW initialization problems!" << std::endl;
