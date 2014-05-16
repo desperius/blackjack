@@ -8,9 +8,32 @@
 #include "ilu.h"
 #include "ilut.h"
 
+#define __CL_ENABLE_EXCEPTIONS
 #include "cl.hpp"
 
 #define TEXTURE_PATH "../res/textures/"
+
+static const std::string source =
+    "#if defined(cl_khr_fp64)\n"
+    "#pragma OPENCL EXTENSION cl_khr_fp64: enable\n"
+    "#elif defined(cl_amd_fp64)\n"
+    "#pragma OPENCL EXTENSION cl_amd_fp64: enable\n"
+    "#else\n"
+    "#error double precision is not supported\n"
+    "#endif\n"
+    "__kernel void add(\n"
+    "       ulong w,\n"
+    "       ulong h,\n"
+    "       __global double *c\n"
+    "       )\n"
+    "{\n"
+    "    size_t i = get_global_id(0);\n"
+    "    size_t j = get_global_id(1);\n"
+    "    if (i < h && j < w)\n" 
+    "    {\n"
+    "       c[i * h + j] = i * h + j;\n"
+    "    }\n"
+    "}\n";
 
 uLong size_buf;
 void *buf;
@@ -22,7 +45,7 @@ int main(int argc, char **argv)
 {
 	std::cout << argv[argc - 1] << std::endl;
 	read_zip();
-    init_ocl();
+    //init_ocl();
 
 	App app;
 	app.Init(argc, argv);
@@ -102,59 +125,90 @@ void read_zip(void)
 
 void init_ocl(void)
 {
-    std::vector<cl::Platform> platform;
-    cl::Platform::get(&platform);
+    const std::size_t w = 4;
+    const std::size_t h = 4;
 
-    if (platform.empty())
+    try
     {
-        std::cout << "OpenCL platforms not found!" << std::endl;
+       std::vector<cl::Platform> platforms;
+       cl::Platform::get(&platforms);
+
+       if (platforms.empty())
+       {
+          std::cerr << "OCL platforms not found!" << std::endl;
+
+          return;
+       }
+       else
+       {
+          std::cout << "Platform name: " << platforms[0].getInfo<CL_PLATFORM_NAME>() << std::endl;
+          std::cout << "Platform name: " << platforms[1].getInfo<CL_PLATFORM_NAME>() << std::endl;
+       }
+
+       std::vector<cl::Device> devices;
+       //platforms[0].getDevices(CL_DEVICE_TYPE_GPU, &devices);
+       platforms[1].getDevices(CL_DEVICE_TYPE_CPU, &devices);
+
+       if (devices.empty())
+       {
+          std::cerr << "OCL devices not found!" << std::endl;
+       }
+       else
+       {
+          std::cout << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+       }
+
+       cl::Context context(devices);
+
+       cl::CommandQueue queue(context, devices[0]);
+       cl::Program::Sources sources(1, std::make_pair(source.c_str(), source.length()));
+
+       cl::Program program(context, source);
+       program.build(devices);
+
+       cl::Kernel kernel(program, "add");
+
+       std::vector<double> c(w * h);
+
+       cl::Buffer C(context, CL_MEM_WRITE_ONLY | CL_MEM_COPY_HOST_PTR, c.size() * sizeof(double), c.data());
+
+       kernel.setArg(0, static_cast<cl_ulong>(w));
+       kernel.setArg(1, static_cast<cl_ulong>(h));
+       kernel.setArg(2, C);
+
+       cl::NDRange global(h, w);
+       queue.enqueueNDRangeKernel(kernel, cl::NullRange, global, cl::NullRange);
+       queue.enqueueReadBuffer(C, CL_TRUE, 0, c.size() * sizeof(double), c.data());
+
+       for (std::size_t i = 0; i < h; ++i)
+       {
+          for (std::size_t j = 0; j < w; ++j)
+          {
+             std::cout << c[i * h + j] << " ";
+          }
+          std::cout << std::endl;
+       }
+       c.clear();
+
+       for (std::size_t i = 0; i < h; ++i)
+       {
+          for (std::size_t j = 0; j < w; ++j)
+          {
+             c[i * h + j] = i * h + j;
+          }
+       }
+
+       for (std::size_t i = 0; i < h; ++i)
+       {
+          for (std::size_t j = 0; j < w; ++j)
+          {
+             std::cout << c[i * h + j] << " ";
+          }
+          std::cout << std::endl;
+       }
     }
-    else
+    catch (...)
     {
-        std::cout << "OpenCL Fuck Yeah!" << std::endl;
-    }
-
-    cl::Context context;
-    std::vector<cl::Device> device;
-
-    for (auto p = platform.begin(); device.empty() && p != platform.end(); ++p) 
-    {
-	    std::vector<cl::Device> pldev;
- 
-	    try 
-        {
-		    p->getDevices(CL_DEVICE_TYPE_GPU, &pldev);
- 
-		    for(auto d = pldev.begin(); device.empty() && d != pldev.end(); ++d) 
-            {
-		        if (!d->getInfo<CL_DEVICE_AVAILABLE>())
-                {
-                    continue;
-                }
- 
-		        std::string ext = d->getInfo<CL_DEVICE_EXTENSIONS>();
- 
-		        if (ext.find("cl_khr_fp64") == std::string::npos && ext.find("cl_amd_fp64") == std::string::npos)
-                {
-                    continue;
-                }
- 
-		        device.push_back(*d);
-		        context = cl::Context(device);
-		    }
-	    } 
-        catch(...) 
-        {
-		    device.clear();
-	    }
-	}
-
-    if (device.empty())
-    {
-        std::cout << "GPUs with double precision not found" << std::endl;
-    }
-    else
-    {
-        std::cout << "GPUs with double precision Fuck Yeah!" << std::endl;
+       std::cout << "Exception throw!" << std::endl;
     }
 }
