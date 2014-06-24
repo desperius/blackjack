@@ -160,20 +160,36 @@ void Image::Draw(void)
     GLint vertices_count = 4;
     GLfloat s = 10.0;
 
-    const GLfloat quad_positions[] = 
+    /*const GLfloat quad_positions[] = 
     {
         -s * (4.0f / 3.0f), -s, -s * 0.8f,
          s * (4.0f / 3.0f), -s, -s * 0.8f,
          s * (4.0f / 3.0f),  s, -s * 0.8f,
         -s * (4.0f / 3.0f),  s, -s * 0.8f
+    };*/
+
+    const GLfloat quad_positions[] = 
+    {
+        0, 0, 0,
+        0, WINDOW_HEIGHT, 0,
+        WINDOW_WIDTH,  WINDOW_HEIGHT, 0,
+        WINDOW_WIDTH, 0, 0
     };
 
-    const GLfloat quad_texcoords[] =
+    /*const GLfloat quad_texcoords[] =
     {
         0.0, 0.0,
         1.0, 0.0,
         1.0, 1.0,
         0.0, 1.0
+    };*/
+
+    const GLfloat quad_texcoords[] =
+    {
+        0.0, 0.0,
+        0.0, 1.0,
+        1.0, 1.0,
+        1.0, 0.0
     };
 
     const GLuint quad_elements[] =
@@ -181,6 +197,12 @@ void Image::Draw(void)
         0, 1, 2,
         2, 3, 0
     };
+
+    /*const GLuint quad_elements[] =
+    {
+        0, 3, 2,
+        2, 0, 1
+    };*/
 
     GLint texture_location = glGetUniformLocation(program_id, "color_texture");
     glUniform1i(texture_location, 0);
@@ -212,15 +234,16 @@ void Image::Draw(void)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(GLuint), quad_elements, GL_STATIC_DRAW);
 
     // Set matrices
-    glm::mat4 model;
-    glm::mat4 view;
-    glm::mat4 projection;
+    //glm::mat4 model;
+    //glm::mat4 view;
+    //glm::mat4 projection;
     glm::mat4 mvp;
 
-    projection = glm::perspective(45.0, 4.0 / 3.0, 0.1, 100.0);
-    view = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, -10.0));
-    model = glm::scale(glm::mat4(1.0), glm::vec3(1.0));
-    mvp = projection * view * model;
+    //projection = glm::perspective(45.0, 4.0 / 3.0, 0.1, 100.0);
+    //view = glm::translate(glm::mat4(1.0), glm::vec3(0.0, 0.0, -10.0));
+    //model = glm::scale(glm::mat4(1.0), glm::vec3(1.0));
+    //mvp = projection * view * model;
+    mvp = glm::ortho(0.f, static_cast<float>(WINDOW_WIDTH), 0.f, static_cast<float>(WINDOW_HEIGHT), -1.f, 1.f);
 
     GLint matrix_location = glGetUniformLocation(program_id, "mvp");
     glUniformMatrix4fv(matrix_location, 1, GL_FALSE, glm::value_ptr(mvp));
