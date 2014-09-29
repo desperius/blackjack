@@ -112,10 +112,10 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;zlib.lib;freetype.lib;freeglut.lib;openal32.lib;alut.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;OpenGLSupport.lib;assimp.lib;devil.lib;ilu.lib;ilut.lib;zlibstat.lib;opencl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;zlib.lib;freetype.lib;freeglut.lib;openal32.lib;alut.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;OpenGLSupport.lib;assimp.lib;devil.lib;ilu.lib;ilut.lib;zlibstat.lib;opencl.lib</AdditionalDependencies>
       <SubSystem>NotSet</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
-      <IgnoreSpecificDefaultLibraries>libcmtd.lib;msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;msvcrt.lib;</IgnoreSpecificDefaultLibraries>
       <AdditionalLibraryDirectories>..\lib\debug;..\lib\</AdditionalLibraryDirectories>
       <AdditionalOptions>
       </AdditionalOptions>
@@ -141,7 +141,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\inc\;..\inc\devil\;..\inc\assimp\;..\inc\opengl\;..\inc\internal\;..\inc\freetype\freetype\;..\inc\freetype\;..\inc\alut\;..\inc\bullet\;..\inc\glm\;..\inc\glm\core\;..\inc\glm\gtc\;..\inc\glm\gtx\;..\inc\glm\virtrev\;..\inc\minizip\;..\inc\zlib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\inc\;..\inc\devil\;..\inc\assimp\;..\inc\opengl\;..\inc\internal\;..\inc\freetype\freetype\;..\inc\freetype\;..\inc\alut\;..\inc\bullet\;..\inc\glm\;..\inc\glm\core\;..\inc\glm\gtc\;..\inc\glm\gtx\;..\inc\glm\virtrev\;..\inc\minizip\;..\inc\zlib\;..\inc\opencl\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -151,7 +151,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glew32.lib;zlib.lib;freetype.lib;freeglut.lib;openal32.lib;alut.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;OpenGLSupport.lib;assimp.lib;devil.lib;ilu.lib;ilut.lib;zlibstat.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;zlib.lib;freetype.lib;freeglut.lib;openal32.lib;alut.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;LinearMath.lib;OpenGLSupport.lib;assimp.lib;devil.lib;ilu.lib;ilut.lib;zlibstat.lib;opencl.lib;</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>libcmt.lib;</IgnoreSpecificDefaultLibraries>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <SubSystem>NotSet</SubSystem>
