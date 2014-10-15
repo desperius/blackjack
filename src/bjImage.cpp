@@ -1,5 +1,5 @@
 #include "main.h"
-#include "image.h"
+#include "bjImage.h"
 
 extern "C"
 {
@@ -39,14 +39,14 @@ const std::string image_fragment_shader_src =
     "color = texture(color_texture, frag_texcoord);\n"
     "}\n";
 
-Image::Image(void) : 
+bjImage::bjImage(void) : 
 	image_id(0),
 	data_size(0),
 	image_data(nullptr),
 	width(0),
 	height(0) { }
 
-Image::~Image(void) 
+bjImage::~bjImage(void) 
 {
 	if (image_data)
 	{
@@ -55,7 +55,7 @@ Image::~Image(void)
 	}
 }
 
-void Image::Init(void)
+void bjImage::Init(void)
 {
     // Initialize DevIL
     ilInit();
@@ -63,7 +63,7 @@ void Image::Init(void)
     ilutInit();
 
     // Initialize the renderer
-    ilutRenderer(ILUT_OPENGL);
+    //ilutRenderer(ILUT_OPENGL);
 
     // Generate an image
     ilGenImages(1, &image_id);
@@ -72,13 +72,13 @@ void Image::Init(void)
     ilBindImage(image_id);
 
     // Enable an origin state
-    ilEnable(IL_ORIGIN_SET);
+    //ilEnable(IL_ORIGIN_SET);
 
     // Set default image origin
     ilOriginFunc(IL_ORIGIN_LOWER_LEFT);
 }
 
-void Image::Load(const char *path)
+void bjImage::Load(const char *path)
 {
     // Load an image into memory
     ILboolean error = ilLoadImage(path);
@@ -147,7 +147,7 @@ void Image::Load(const char *path)
     }
 }
 
-void Image::Draw(void)
+void bjImage::Draw(void)
 {
     glUseProgram(program_id);
 
@@ -252,7 +252,7 @@ void Image::Draw(void)
     glUseProgram(0);
 }
 
-GLuint Image::MakeShader(GLenum type, const std::string &source)
+GLuint bjImage::MakeShader(GLenum type, const std::string &source)
 {
     GLuint shader_id = glCreateShader(type);
     std::cout << "Shader ID: " << shader_id << std::endl;

@@ -1,5 +1,5 @@
 #include "main.h"
-#include "text.h"
+#include "bjText.h"
 #include "ft2.h"
 #include FT_FREETYPE_H
 #include <string>
@@ -37,9 +37,9 @@ const std::string font_fragment_shader_src =
     "frag_color = vec4(color.rgb, texture2D(tex, texcoord).a) * color;\n"
     "}\n";
 
-Text::Text(void) : library(nullptr), face(nullptr) { }
+bjText::bjText(void) : library(nullptr), face(nullptr) { }
 
-Text::~Text(void)
+bjText::~bjText(void)
 {
     FT_Done_FreeType(library);
     library = nullptr;
@@ -48,7 +48,7 @@ Text::~Text(void)
     face = nullptr;
 }
 
-void Text::Init(void)
+void bjText::Init(void)
 {
     FT_Error error = FT_Init_FreeType(&library);
 
@@ -65,7 +65,7 @@ void Text::Init(void)
     }
 }
 
-void Text::Load(void)
+void bjText::Load(void)
 {
     vertex_shader   = MakeShader(GL_VERTEX_SHADER, font_vertex_shader_src);
     fragment_shader = MakeShader(GL_FRAGMENT_SHADER, font_fragment_shader_src);
@@ -86,7 +86,7 @@ void Text::Load(void)
     }
 }
 
-void Text::Draw(void)
+void bjText::Draw(void)
 {
     glUseProgram(program_id);
 
@@ -118,7 +118,6 @@ void Text::Draw(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-
     GLuint vbo;
     glGenBuffers(1, &vbo);
     glEnableVertexAttribArray(attribute_coord);
@@ -133,7 +132,7 @@ void Text::Draw(void)
     glUseProgram(0);
 }
 
-void Text::RenderText(const char *text, float x, float y, float sx, float sy)
+void bjText::RenderText(const char *text, float x, float y, float sx, float sy)
 {
     const char *p = nullptr;
     FT_GlyphSlot glyph = face->glyph;
@@ -164,7 +163,7 @@ void Text::RenderText(const char *text, float x, float y, float sx, float sy)
     }
 }
 
-GLuint Text::MakeShader(GLenum type, const std::string &source)
+GLuint bjText::MakeShader(GLenum type, const std::string &source)
 {
     GLuint shader_id = glCreateShader(type);
     std::cout << "Shader ID: " << shader_id << std::endl;

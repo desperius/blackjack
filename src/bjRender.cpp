@@ -1,7 +1,7 @@
 #include "main.h"
-#include "renderer.h"
-#include "text.h"
-#include "image.h"
+#include "bjRender.h"
+#include "bjText.h"
+#include "bjImage.h"
 
 extern "C"
 {
@@ -9,11 +9,11 @@ extern "C"
 	#include "freeglut.h"
 }
 
-Renderer *Renderer::instance = nullptr;
+bjRender *bjRender::instance = nullptr;
 
-Renderer::Renderer(void) : text(nullptr), image(nullptr) { }
+bjRender::bjRender(void) : text(nullptr), image(nullptr) { }
 
-Renderer::~Renderer(void) 
+bjRender::~bjRender(void) 
 {
     if (text)
     {
@@ -28,22 +28,22 @@ Renderer::~Renderer(void)
     }
 }
 
-void Renderer::CallbackReshape(int w, int h)
+void bjRender::CallbackReshape(int w, int h)
 {
 	instance->Reshape(w, h);
 }
 
-void Renderer::CallbackDisplay(void)
+void bjRender::CallbackDisplay(void)
 {
 	instance->Display();
 }
 
-void Renderer::CallbackMouse(int button, int state, int x, int y)
+void bjRender::CallbackMouse(int button, int state, int x, int y)
 {
 	instance->Mouse(button, state, x, y);
 }
 
-void Renderer::Init(int argc, char **argv)
+void bjRender::Init(int argc, char **argv)
 {
 	instance = this;
 
@@ -64,22 +64,22 @@ void Renderer::Init(int argc, char **argv)
     }
 
 	//> Set glut functions
-	glutReshapeFunc(Renderer::CallbackReshape);
-	glutDisplayFunc(Renderer::CallbackDisplay);
-	glutMouseFunc(Renderer::CallbackMouse);
+	glutReshapeFunc(bjRender::CallbackReshape);
+	glutDisplayFunc(bjRender::CallbackDisplay);
+	glutMouseFunc(bjRender::CallbackMouse);
 
-    text = new (std::nothrow) Text();
+    text = new (std::nothrow) bjText();
     text->Init();
     text->Load();
 
-    image = new (std::nothrow) Image();
+    image = new (std::nothrow) bjImage();
     image->Init();
     image->Load(IMAGE_DIR "background.png");
 
     const GLubyte *gpu = glGetString(GL_RENDERER);
     std::cout << gpu << std::endl;
 }
-void Renderer::Reshape(int w, int h)
+void bjRender::Reshape(int w, int h)
 {
 	if (0 == h)
 	{
@@ -89,7 +89,7 @@ void Renderer::Reshape(int w, int h)
 	glViewport(0, 0, w, h);
 }
 
-void Renderer::Display(void)
+void bjRender::Display(void)
 {
 	//std::cout << "Display function was called!" << std::endl;
 	glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -108,7 +108,7 @@ void Renderer::Display(void)
 	glutSwapBuffers();
 }
 
-void Renderer::Mouse(int button, int state, int x, int y)
+void bjRender::Mouse(int button, int state, int x, int y)
 {
 	if (button == GLUT_RIGHT_BUTTON && state == GLUT_UP)
 	{
@@ -116,7 +116,7 @@ void Renderer::Mouse(int button, int state, int x, int y)
 	}
 }
 
-void Renderer::Start(void)
+void bjRender::Start(void)
 {
 	glutMainLoop();
 }

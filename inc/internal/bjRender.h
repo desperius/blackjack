@@ -1,17 +1,17 @@
-#ifndef _RENDERER_H_
-#define _RENDERER_H_
+#ifndef _BJ_RENDER_H_
+#define _BJ_RENDER_H_
 
 //const int WINDOW_WIDTH  = 800;
 //const int WINDOW_HEIGHT = 600;
 
-class Text;
-class Image;
+class bjText;
+class bjImage;
 
-class Renderer
+class bjRender
 {
 public:
-	Renderer(void);
-	~Renderer(void);
+	bjRender(void);
+	~bjRender(void);
 
 	void Init(int argc, char **argv);
 	void Start(void);
@@ -26,9 +26,9 @@ private:
 	void Mouse(int button, int state, int x, int y);
 
 private:
-	static Renderer *instance;
-    Text            *text;
-    Image           *image;
+	static bjRender   *instance;
+    bjText            *text;
+    bjImage           *image;
 };
 
-#endif /* _RENDERER_H_ */
+#endif /* _BJ_RENDER_H_ */

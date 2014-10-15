@@ -12,16 +12,16 @@
     <ClInclude Include="..\inc\internal\main.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\internal\application.h">
+    <ClInclude Include="..\inc\internal\bjImage.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\internal\renderer.h">
+    <ClInclude Include="..\inc\internal\bjText.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\internal\text.h">
+    <ClInclude Include="..\inc\internal\bjRender.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="..\inc\internal\image.h">
+    <ClInclude Include="..\inc\internal\bjApp.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,16 +29,16 @@
     <ClCompile Include="..\src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\application.cpp">
+    <ClCompile Include="..\src\bjImage.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\renderer.cpp">
+    <ClCompile Include="..\src\bjText.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\text.cpp">
+    <ClCompile Include="..\src\bjRender.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\image.cpp">
+    <ClCompile Include="..\src\bjApp.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

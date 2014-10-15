@@ -1,5 +1,5 @@
 #include "main.h"
-#include "application.h"
+#include "bjApp.h"
 #include "unzip.h"
 #include "zip.h"
 
@@ -8,6 +8,7 @@
 #include "ilu.h"
 #include "ilut.h"
 
+// OpenCL
 #define __CL_ENABLE_EXCEPTIONS
 #include "cl.hpp"
 
@@ -47,7 +48,7 @@ int main(int argc, char **argv)
 	read_zip();
     //init_ocl();
 
-	App app;
+	bjApp app;
 	app.Init(argc, argv);
 	app.Start();
 

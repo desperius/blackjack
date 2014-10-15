@@ -1,5 +1,5 @@
-#ifndef _IMAGE_H_
-#define _IMAGE_H_
+#ifndef _BJ_IMAGE_H_
+#define _BJ_IMAGE_H_
 
 // DevIL types
 typedef unsigned int ILuint;
@@ -14,19 +14,19 @@ typedef unsigned int  GLenum;
 
 #define IMAGE_DIR "../res/textures/"
 
-class Image
+class bjImage
 {
 public:
-    Image(void);
-    ~Image(void);
+    bjImage(void);
+    ~bjImage(void);
 
     void Init(void);
     void Load(const char *path);
     void Draw(void);
 
 protected:
-    Image(const Image &);
-    Image & operator= (const Image &);
+    bjImage(const bjImage &);
+    bjImage & operator= (const bjImage &);
 
 private:
     static GLuint MakeShader(GLenum type, const std::string &source);
@@ -43,4 +43,4 @@ private:
     GLint     program_id;
 };
 
-#endif /* _IMAGE_H_ */
+#endif /* _BJ_IMAGE_H_ */
