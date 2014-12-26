@@ -96,7 +96,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <TreatWarningAsError>false</TreatWarningAsError>
       <AdditionalIncludeDirectories>..\inc\;..\inc\devil\;..\inc\assimp\;..\inc\opengl\;..\inc\internal\;..\inc\freetype\freetype\;..\inc\freetype\;..\inc\alut\;..\inc\bullet\;..\inc\glm\;..\inc\glm\core\;..\inc\glm\gtc\;..\inc\glm\gtx\;..\inc\glm\virtrev\;..\inc\minizip\;..\inc\zlib\;..\inc\opencl\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

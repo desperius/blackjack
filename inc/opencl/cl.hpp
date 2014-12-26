@@ -142,6 +142,13 @@
  * \endcode
  *
  */
+
+#pragma warning(push)
+
+#pragma warning (disable: 4510)
+#pragma warning (disable: 4512)
+#pragma warning (disable: 4610)
+
 #ifndef CL_HPP_
 #define CL_HPP_
 
@@ -12450,3 +12457,5 @@ public:
 #endif // _WIN32
 
 #endif // CL_HPP_
+
+#pragma warning(pop)
